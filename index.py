@@ -52,7 +52,7 @@ def wave():
     collection_ref = db.collection("人選之人─造浪者")    
     docs = collection_ref.get()    
     for doc in docs:         
-        Result += "文件內容：{}".format(doc.to_dict()) + "<br>"    
+        Result += "演員：{}".format(doc.to_dict()) + "<br>"    
     return Result
 
 
