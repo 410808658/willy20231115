@@ -50,7 +50,7 @@ def wave():
     Result = ""
     db = firestore.client()
     collection_ref = db.collection("人選之人─造浪者")    
-    docs = collection_ref.order_by("birth",direction=firestore.Query.DESCENDING).limit(3).get()   
+    docs = collection_ref.order_by("birth",direction=firestore.Query.DESCENDING).get()   
     for doc in docs:         
         Result += "演員：{}".format(doc.to_dict()) + "<br>"    
     return Result
