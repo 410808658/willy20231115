@@ -17,7 +17,7 @@ def index():
     X += "<a href=/today>日期時間</a><br>"
     X += "<a href=/about>羅爾玨網頁</a><br>"
     X += "<a href=/welcome?guest=羅爾玨>歡迎羅爾玨</a><br><br>"
-    X += "<a href=/wave>人選之人演員名單(按年齡由小到大排序)</a><br>"
+    X += "<a href=/wave>人選之人演員名單(按年齡由大到小排序)</a><br>"
     return X
 
 @app.route("/mis")
