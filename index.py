@@ -12,48 +12,25 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    X = "作者:羅爾玨 2023/11/9a<br>"
-    X += "<a href=/mis>資管導論</a><br>"
-    X += "<a href=/today>日期時間</a><br>"
-    X += "<a href=/about>羅爾玨網頁</a><br>"
-    X += "<a href=/welcome?guest=羅爾玨>歡迎羅爾玨</a><br><br>"
-    X += "<a href=/wave>人選之人演員名單(按年齡由大到小排序)</a><br>"
+    X = "企管四B 410808658 羅爾玨的求職相關資訊<br>"
+    X += "<a href=/me>我的個人簡介</a><br>"
+    X += "<a href=/mis>MIS相關工作介紹</a><br>"
+    X += "<a href=/quiz>職涯測驗結果</a><br>"
     return X
 
+@app.route("/me")
+def me():
+    return render_template("about2.html")
+
+
 @app.route("/mis")
-def course():
-    return "<h1>資訊管理導論</h1>"
+def mis():
+    return render_template("aboutwork.html")
 
-@app.route("/today")
-def today():
-    now = datetime.now()
-    return render_template("today.html",datetime = str(now))
+@app.route("/quiz")
+def quiz():
+    return render_template("ucan.html")
 
-@app.route("/about")
-def about():
-    return render_template("about.html")
-@app.route("/welcome", methods=["GET", "POST"])
-def welcome():
-    user = request.values.get("guest")
-    return render_template("welcome.html", name=user)
-@app.route("/account", methods=["GET", "POST"])
-def account():
-    if request.method == "POST":
-        user = request.form["user"]
-        pwd = request.form["pwd"]
-        result = "您輸入的帳號是：" + user + "; 密碼為：" + pwd 
-        return result
-    else:
-        return render_template("account.html")
-@app.route("/wave")
-def wave():
-    Result = ""
-    db = firestore.client()
-    collection_ref = db.collection("人選之人─造浪者")    
-    docs = collection_ref.order_by("birth",direction=firestore.Query.DESCENDING).get()   
-    for doc in docs:         
-        Result += "演員：{}".format(doc.to_dict()) + "<br>"    
-    return Result
 
 
 
